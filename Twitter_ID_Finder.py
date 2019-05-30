@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re, argparse, sys, json, datetime, urllib.parse
 from  requests_html import HTMLSession
 
@@ -17,12 +18,12 @@ def Id2Name(uid):
 	userpage = url
 	timeline = result.html.find("title", first=True)
 	if timeline:
-		username = timeline.text.split(' | Twitter')
-		print("username = {}\nURL      = {}".format(username, userpage))
+		username = timeline.text.split(' | Twitter')[0]
+		print("\nuid      = {}\nusername = {}\nURL      = {}".format(uid, username, userpage))
 		
 	if args.user_file:
 		with open("{}_tw.txt".format(time), 'a+') as f:  
-			f.write("\nusername = {}\nURL      = {}".format(username, userpage))
+			f.write("\nuid      = {}\nusername = {}\nURL      = {}".format(uid, username, userpage))
 
 
 if args.uid:
@@ -30,9 +31,10 @@ if args.uid:
 elif args.user_file:
 	with open(args.user_file) as json_file:  
 		data = json.load(json_file)
+	print("Total {} data.\n".format(len(data)))
 	for ids in data:
 		Id2Name(ids)
-	
+	print("Total {} data.\n".format(len(data)))	
 else:
 	parser.print_help()
 

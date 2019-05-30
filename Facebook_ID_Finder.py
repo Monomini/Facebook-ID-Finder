@@ -32,7 +32,7 @@ def Id2NameError(uid):
 			print("Error\nusername = {}\nURL      = {}".format(username, userpage))
 
 	if args.user_file:
-		with open("{}_.txt".format(time), 'a+') as f:  
+		with open("{}_fb.txt".format(time), 'a+') as f:  
 			f.write("\nusername = {}\nURL      = {}".format(username, userpage))
 def Id2Name(uid):
 	session = HTMLSession()
@@ -56,7 +56,7 @@ def Id2Name(uid):
 			Id2NameError(uid)
 			return	
 	if args.user_file:
-		with open("{}_.txt".format(time), 'a+') as f:  
+		with open("{}_fb.txt".format(time), 'a+') as f:  
 			f.write("\nusername = {}\nURL      = {}".format(username, userpage))
 
 if args.target:
